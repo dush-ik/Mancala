@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box;
+}
+
+header {
+  width: 5%;
+  margin: 2rem auto;
+  font-size: xx-large;
+  font-weight: 800;
+}
+
+main {
+  width: 50%;
+  margin: auto;
+  padding: 2rem 1rem;
+  border: 1px solid black;
+}
+
+div {
+  text-align: center;
+}
+
+.player-name {
+  margin: 1rem;
+}
+
+.board {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+section {
+  border: 1px solid;
+  text-align: center;
+}
+
+section:first-child, section:last-child {
+  line-height: 100px;
+  width: 10%;
+}
+
+.pits {
+  display: flex;
+  justify-content: space-around;
+}
+
+.pits > div {
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  margin: 5px;
+  border: 1px solid black;
+}
