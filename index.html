@@ -9,34 +9,31 @@
   <body>
     <header>Mancala</header>
     <main>
-      <div class="player-name">Player 1</div>
+      <button onClick="start()">Restart</button>
+      <div class="player-name">Computer</div>
       <div class="board">
+        <aside id="computer-score"></aside>
         <section>
-          0
-        </section>
-        <section>
-          <div class="pits">
-            <div>6</div>
-            <div>6</div>
-            <div>6</div>
-            <div>6</div>
-            <div>6</div>
-            <div>6</div>
+          <div class="pits" id="computer-pits">
+            <div id="comp-pit-1"></div>
+            <div id="comp-pit-2"></div>
+            <div id="comp-pit-3"></div>
+            <div id="comp-pit-4"></div>
+            <div id="comp-pit-5"></div>
+            <div id="comp-pit-6"></div>
           </div>
-          <div class="pits">
-            <div>6</div>
-            <div>6</div>
-            <div>6</div>
-            <div>6</div>
-            <div>6</div>
-            <div>6</div>
+          <div class="pits" id="player-pits">
+            <div id="player-pit-1"></div>
+            <div id="player-pit-2"></div>
+            <div id="player-pit-3"></div>
+            <div id="player-pit-4"></div>
+            <div id="player-pit-5"></div>
+            <div id="player-pit-6"></div>
           </div>
         </section>
-        <section>
-          0
-        </section>
+        <aside id="player-score"></aside>
       </div>
-      <div class="player-name">Player 2</div>
+      <div class="player-name">Player</div>
     </main>
     <script type="text/javascript" src="main.js"></script>
   </body>

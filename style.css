@@ -16,11 +16,17 @@ main {
   border: 1px solid black;
 }
 
+button {
+  float: right;
+  cursor: pointer;
+}
+
 div {
   text-align: center;
 }
 
 .player-name {
+  clear: right;
   margin: 1rem;
 }
 
@@ -35,7 +41,9 @@ section {
   text-align: center;
 }
 
-section:first-child, section:last-child {
+aside {
+  border: 1px solid;
+  text-align: center;
   line-height: 100px;
   width: 10%;
 }
@@ -51,4 +59,14 @@ section:first-child, section:last-child {
   line-height: 50px;
   margin: 5px;
   border: 1px solid black;
+  animation: glowing 1s ease-in-out infinite alternate;
+}
+
+@keyframes glowing {
+  from {
+    box-shadow: 0 0 10px #fff;
+  }
+  to {
+    box-shadow: 0 0 40px #0ff;
+  }
 }
