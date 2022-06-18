@@ -60,7 +60,7 @@ main {
   border: 1px solid black;
 }
 
-.game__board__pits:first-child > div:first-child {
+.game__board__pits__child--glow {
   animation: glowing 1s ease-in-out infinite alternate;
 }
 
