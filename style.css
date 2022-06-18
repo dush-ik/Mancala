@@ -16,57 +16,43 @@ main {
   border: 1px solid black;
 }
 
-button {
-  float: right;
+.restart {
+  text-align: right;
+}
+
+.restart > button {
   cursor: pointer;
 }
 
-div {
+.game > h3 {
   text-align: center;
 }
 
-.player-name {
-  clear: right;
-  margin: 1rem;
-}
-
-.board {
+.game__board {
   width: 100%;
+  margin: 2rem 0;
   display: flex;
   justify-content: space-between;
 }
 
-section {
-  border: 1px solid;
-  text-align: center;
-}
-
-aside {
+.game__board__score {
   border: 1px solid;
   text-align: center;
   line-height: 100px;
   width: 10%;
 }
 
-.pits {
+.game__board__pits {
   display: flex;
   justify-content: space-around;
+  border: 1px solid;
+  text-align: center;
 }
 
-.pits > div {
+.game__board__pits > div {
   height: 50px;
   width: 50px;
   line-height: 50px;
   margin: 5px;
   border: 1px solid black;
-  animation: glowing 1s ease-in-out infinite alternate;
-}
-
-@keyframes glowing {
-  from {
-    box-shadow: 0 0 10px #fff;
-  }
-  to {
-    box-shadow: 0 0 40px #0ff;
-  }
 }

@@ -7,33 +7,39 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>Mancala</header>
+    <header>
+      <h2>Mancala</h2>
+    </header>
     <main>
-      <button onClick="start()">Restart</button>
-      <div class="player-name">Computer</div>
-      <div class="board">
-        <aside id="computer-score"></aside>
-        <section>
-          <div class="pits" id="computer-pits">
-            <div id="comp-pit-1"></div>
-            <div id="comp-pit-2"></div>
-            <div id="comp-pit-3"></div>
-            <div id="comp-pit-4"></div>
-            <div id="comp-pit-5"></div>
-            <div id="comp-pit-6"></div>
-          </div>
-          <div class="pits" id="player-pits">
-            <div id="player-pit-1"></div>
-            <div id="player-pit-2"></div>
-            <div id="player-pit-3"></div>
-            <div id="player-pit-4"></div>
-            <div id="player-pit-5"></div>
-            <div id="player-pit-6"></div>
-          </div>
-        </section>
-        <aside id="player-score"></aside>
+      <div class="restart">
+        <button onClick="start()">Restart</button>
       </div>
-      <div class="player-name">Player</div>
+      <section class="game">
+        <h3>Computer</h3>
+        <div class="game__board">
+          <div class="game__board__score" id="computer-score"></div>
+          <div>
+            <div class="game__board__pits" id="computer-pits">
+              <div id="comp-pit-1"></div>
+              <div id="comp-pit-2"></div>
+              <div id="comp-pit-3"></div>
+              <div id="comp-pit-4"></div>
+              <div id="comp-pit-5"></div>
+              <div id="comp-pit-6"></div>
+            </div>
+            <div class="game__board__pits" id="player-pits">
+              <div id="player-pit-1"></div>
+              <div id="player-pit-2"></div>
+              <div id="player-pit-3"></div>
+              <div id="player-pit-4"></div>
+              <div id="player-pit-5"></div>
+              <div id="player-pit-6"></div>
+            </div>
+          </div>
+          <div class="game__board__score" id="player-score"></div>
+        </div>
+        <h3>Player</h3>
+      </section>
     </main>
     <script type="text/javascript" src="main.js"></script>
   </body>
