@@ -36,10 +36,13 @@ main {
 }
 
 .game__board__score {
-  border: 1px solid;
-  text-align: center;
-  line-height: 100px;
   width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  font-size: large;
+  font-weight: 800;
 }
 
 .game__board__pits {
@@ -55,4 +58,18 @@ main {
   line-height: 50px;
   margin: 5px;
   border: 1px solid black;
+}
+
+.game__board__pits:first-child > div:first-child {
+  animation: glowing 1s ease-in-out infinite alternate;
+}
+
+
+@keyframes glowing {
+  from {
+    box-shadow: inset 0 0 0 #fff;
+  }
+  to {
+    box-shadow: inset 0 0 50px #0ff;
+  }
 }
