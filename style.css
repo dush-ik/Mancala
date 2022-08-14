@@ -35,7 +35,7 @@ main {
   justify-content: space-between;
 }
 
-.game__board__score {
+.game__score {
   width: 10%;
   display: flex;
   justify-content: center;
@@ -45,14 +45,14 @@ main {
   font-weight: 800;
 }
 
-.game__board__pits {
+.game__pits {
   display: flex;
   justify-content: space-around;
   border: 1px solid;
   text-align: center;
 }
 
-.game__board__pits > div {
+.game__pits > div {
   height: 50px;
   width: 50px;
   line-height: 50px;
@@ -60,7 +60,7 @@ main {
   border: 1px solid black;
 }
 
-.game__board__pits__child--glow {
+.game__pit--glow {
   animation: glowing 1s ease-in-out infinite alternate;
 }
 

@@ -7,10 +7,9 @@ const Mancala = () => {
   const $computerPits = document.getElementById('computer-pits');
   const $restartButton = document.querySelector('button');
 
-  const glowClass = 'game__board__pits__child--glow';
-  let currentPit = 1;
-  let $currentHighlightedPit = document.getElementById(`comp-pit-${currentPit}`);
-  $currentHighlightedPit.classList.add(glowClass);
+  const glowClass = 'game__pit--glow';
+  let currentPit;
+  let $currentHighlightedPit ;
   
   const restartGame = () => {
     initializeGame();
@@ -20,12 +19,14 @@ const Mancala = () => {
     const keyBoardKey = e.key;
     if (keyBoardKey === 'ArrowRight') {
       $currentHighlightedPit.classList.remove(glowClass);
-      currentPit += 1;
+      const nextPit = currentPit + 1;
+      currentPit = (nextPit > 5 ? 0 : nextPit);
       $currentHighlightedPit = document.getElementById(`comp-pit-${currentPit}`);
       $currentHighlightedPit.classList.add(glowClass);
     } else if (keyBoardKey === 'ArrowLeft') {
       $currentHighlightedPit.classList.remove(glowClass);
-      currentPit -= 1;
+      const previousPit = currentPit - 1;
+      currentPit = (previousPit < 0 ? 5 : previousPit);
       $currentHighlightedPit = document.getElementById(`comp-pit-${currentPit}`);
       $currentHighlightedPit.classList.add(glowClass);
     }
@@ -33,6 +34,10 @@ const Mancala = () => {
 
   // initialize boards
   const initializeBoard = () => {
+    currentPit = 0;
+    $currentHighlightedPit?.classList.remove(glowClass);
+    $currentHighlightedPit = document.getElementById(`comp-pit-${currentPit}`);
+    $currentHighlightedPit.classList.add(glowClass);
     $playerScore.textContent = '0';
     $computerScore.textContent = '0';
     Array.from($playerPits.children).forEach($ele => $ele.textContent = '6');
