@@ -11,7 +11,11 @@
       <h2>Mancala</h2>
     </header>
     <main>
-      <div class="restart">
+      <div class="meta">
+        <section class="meta__toss">
+          <h5>Toss:</h5>
+          <div id="toss"></div>
+        </section>
         <button>Restart</button>
       </div>
       <section class="game">
@@ -20,25 +24,25 @@
           <div class="game__score" id="computer-score"></div>
           <div>
             <div class="game__pits" id="computer-pits">
-              <div id="comp-pit-0"></div>
-              <div id="comp-pit-1"></div>
-              <div id="comp-pit-2"></div>
-              <div id="comp-pit-3"></div>
-              <div id="comp-pit-4"></div>
-              <div id="comp-pit-5"></div>
+              <div id="computer-pit-0"></div>
+              <div id="computer-pit-1"></div>
+              <div id="computer-pit-2"></div>
+              <div id="computer-pit-3"></div>
+              <div id="computer-pit-4"></div>
+              <div id="computer-pit-5"></div>
             </div>
-            <div class="game__pits" id="player-pits">
-              <div id="player-pit-0"></div>
-              <div id="player-pit-1"></div>
-              <div id="player-pit-2"></div>
-              <div id="player-pit-3"></div>
-              <div id="player-pit-4"></div>
-              <div id="player-pit-5"></div>
+            <div class="game__pits" id="your-pits">
+              <div id="your-pit-0"></div>
+              <div id="your-pit-1"></div>
+              <div id="your-pit-2"></div>
+              <div id="your-pit-3"></div>
+              <div id="your-pit-4"></div>
+              <div id="your-pit-5"></div>
             </div>
           </div>
-          <div class="game__score" id="player-score"></div>
+          <div class="game__score" id="your-score"></div>
         </div>
-        <h3>Player</h3>
+        <h3>You</h3>
       </section>
     </main>
     <script type="text/javascript" src="main.js"></script>
