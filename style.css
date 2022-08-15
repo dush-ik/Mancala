@@ -71,7 +71,7 @@ main {
 }
 
 .game__pit--glow {
-  animation: glowing 1s ease-in-out infinite alternate;
+  animation: glowing 0.5s ease-in-out infinite alternate;
 }
 
 

@@ -22,16 +22,18 @@ const Mancala = () => {
   }
 
   const moveGlowTileAndReducePitNumber = () => {
-    if (selectedId === 'computer' && currentPit === 0) {
-      selectedId = 'your';
-    } else if (selectedId === 'computer') {
-      currentPit -= 1
-    } else if (selectedId === 'your' && currentPit === 5) {
-      selectedId = 'computer';
-    } else if (selectedId === 'your') {
-      currentPit += 1;
-    }
-    glowTile();
+    setInterval(() => {
+      if (selectedId === 'computer' && currentPit === 0) {
+        selectedId = 'your';
+      } else if (selectedId === 'computer') {
+        currentPit -= 1
+      } else if (selectedId === 'your' && currentPit === 5) {
+        selectedId = 'computer';
+      } else if (selectedId === 'your') {
+        currentPit += 1;
+      }
+      glowTile();  
+    }, 1000);
   }
 
   const glowTile = () => {
@@ -45,7 +47,7 @@ const Mancala = () => {
     if (keyBoardKey === 'Enter'){
       document.removeEventListener('keyup', handleKeyboard)
       moveGlowTileAndReducePitNumber();
-      document.addEventListener('keyup', handleKeyboard, false)
+      // document.addEventListener('keyup', handleKeyboard, false)
     } else if (keyBoardKey === 'ArrowRight') {
       const nextPit = currentPit + 1;
       currentPit = nextPit > 5 ? 0 : nextPit;
