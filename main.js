@@ -10,7 +10,8 @@ const Mancala = () => {
 
   const glowClass = 'game__pit--glow';
   let currentPit;
-  let $currentHighlightedPit ;
+  let $currentHighlightedPit;
+  let interval = null;
 
   const playersId = ['computer', 'your'];
   let selectedId = playersId[0];
@@ -18,27 +19,65 @@ const Mancala = () => {
   const restartGame = (e) => {
     // to remove focus from the restart button after click
     e.target.blur();
+    document.removeEventListener('keyup', handleKeyboard);
+    clearInterval(interval);
+    interval = null;
     initializeGame();
   }
 
+  const stop = () => {
+    clearInterval(interval);
+    interval = null;
+    const currNumber = parseInt($currentHighlightedPit.textContent);
+    if (currNumber > 1) {
+      moveGlowTileAndReducePitNumber();
+    } else {
+      document.addEventListener('keyup', handleKeyboard, false);
+    }
+  }
+
   const moveGlowTileAndReducePitNumber = () => {
-    setInterval(() => {
+    const $reducingPit = document.getElementById(`${selectedId}-pit-${currentPit}`);
+    let isHighlightScore = false;
+    interval = setInterval(() => {
+      const currentNumber = parseInt($reducingPit.textContent);
+      if(currentNumber === 0) {
+        stop();
+        return;
+      }
+      $reducingPit.textContent = parseInt($reducingPit.textContent) - 1;
       if (selectedId === 'computer' && currentPit === 0) {
-        selectedId = 'your';
+        if (!isHighlightScore) {
+          glowTile(true, $computerScore);
+          isHighlightScore = true;
+        } else {
+          isHighlightScore = false;
+          selectedId = 'your';
+          glowTile(true); 
+        }
       } else if (selectedId === 'computer') {
         currentPit -= 1
+        glowTile(true); 
       } else if (selectedId === 'your' && currentPit === 5) {
-        selectedId = 'computer';
+        if (!isHighlightScore) {
+          glowTile(true, $yourScore);
+          isHighlightScore = true;
+        } else {
+          isHighlightScore = false;
+          selectedId = 'computer';
+          glowTile(true); 
+        }
       } else if (selectedId === 'your') {
         currentPit += 1;
+        glowTile(true); 
       }
-      glowTile();  
     }, 1000);
   }
 
-  const glowTile = () => {
+  const glowTile = (isIncrease = false, highlightedElement) => {
     $currentHighlightedPit?.classList.remove(glowClass);
-    $currentHighlightedPit = document.getElementById(`${selectedId}-pit-${currentPit}`);
+    $currentHighlightedPit = highlightedElement ?? document.getElementById(`${selectedId}-pit-${currentPit}`);
+    isIncrease && ($currentHighlightedPit.textContent = parseInt($currentHighlightedPit.textContent) + 1);
     $currentHighlightedPit.classList.add(glowClass);
   }
 
@@ -47,7 +86,6 @@ const Mancala = () => {
     if (keyBoardKey === 'Enter'){
       document.removeEventListener('keyup', handleKeyboard)
       moveGlowTileAndReducePitNumber();
-      // document.addEventListener('keyup', handleKeyboard, false)
     } else if (keyBoardKey === 'ArrowRight') {
       const nextPit = currentPit + 1;
       currentPit = nextPit > 5 ? 0 : nextPit;
@@ -65,6 +103,12 @@ const Mancala = () => {
     $toss.textContent = selectedId === 'your' ? 'You' : 'Computer';
   }
 
+  // add events
+  const initializeEvents = () => {
+    $restartButton.addEventListener('click', restartGame, false);
+    document.addEventListener('keyup', handleKeyboard, false)
+  }
+
   // initialize boards
   const initializeBoard = () => {
     currentPit = 0;
@@ -74,12 +118,6 @@ const Mancala = () => {
     $computerScore.textContent = '0';
     Array.from($yourPits.children).forEach($ele => $ele.textContent = '6');
     Array.from($computerPits.children).forEach($ele => $ele.textContent = '6');
-  }
-
-  // add events
-  const initializeEvents = () => {
-    $restartButton.addEventListener('click', restartGame, false);
-    document.addEventListener('keyup', handleKeyboard, false)
   }
 
   const initializeGame = () => {
