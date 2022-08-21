@@ -47,7 +47,7 @@ const Mancala = () => {
       }
       $reducingPit.textContent = parseInt($reducingPit.textContent) - 1;
       if (selectedId === 'computer' && currentPit === 0) {
-        if (!isHighlightScore) {
+        if (!isHighlightScore && $toss.textContent === 'Computer') {
           glowTile(true, $computerScore);
           isHighlightScore = true;
         } else {
@@ -59,7 +59,7 @@ const Mancala = () => {
         currentPit -= 1
         glowTile(true); 
       } else if (selectedId === 'your' && currentPit === 5) {
-        if (!isHighlightScore) {
+        if (!isHighlightScore && $toss.textContent === 'You') {
           glowTile(true, $yourScore);
           isHighlightScore = true;
         } else {
