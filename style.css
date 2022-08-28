@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: black;
+  color: #149414;
+}
+
 header {
   width: 5%;
   margin: 2rem auto;
@@ -13,7 +18,7 @@ main {
   width: 50%;
   margin: auto;
   padding: 2rem 1rem;
-  border: 1px solid black;
+  border: 1px solid #149414;
 }
 
 .meta {
@@ -23,7 +28,7 @@ main {
   padding: 0 0.5rem;
 }
 
-.meta__toss {
+.meta__turn {
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
@@ -32,6 +37,8 @@ main {
 
 .meta > button {
   cursor: pointer;
+  background-color: black;
+  color: #149414;
 }
 
 .game > h3 {
@@ -67,7 +74,7 @@ main {
   width: 50px;
   line-height: 50px;
   margin: 5px;
-  border: 1px solid black;
+  border: 1px solid #149414;
 }
 
 .game__pit--glow {
@@ -77,9 +84,9 @@ main {
 
 @keyframes glowing {
   from {
-    box-shadow: 0 0 0 grey, 0 0 0 black;
+    box-shadow: 0 0 0 #628e62, 0 0 0 #0e6b0e;
   }
   to {
-    box-shadow: 10px 10px 10px grey, 0 0 10px black; 
+    box-shadow: 5px 5px 5px #628e62, 0 0 5px #0e6b0e; 
   }
 }
