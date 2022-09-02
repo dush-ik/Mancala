@@ -1,10 +1,10 @@
 
 const Mancala = () => {
   // DOM elements
-  const $yourScore = document.getElementById('your-score');
-  const $yourPits = document.getElementById('your-pits');
-  const $computerScore = document.getElementById('computer-score');
-  const $computerPits = document.getElementById('computer-pits');
+  const $player1Score = document.getElementById('player-1-score');
+  const $player1Pits = document.getElementById('player-1-pits');
+  const $player2Score = document.getElementById('player-2-score');
+  const $player2Pits = document.getElementById('player-2-pits');
   const $restartButton = document.querySelector('button');
   const $turn = document.getElementById('turn');
   const $count = document.getElementById('count');
@@ -14,11 +14,11 @@ const Mancala = () => {
   let $currentHighlightedPit;
   let interval = null;
 
-  const COMPUTER = 'computer';
-  const YOUR = 'your'
-  const playersId = [COMPUTER, YOUR];
+  const PLAYER_1 = 'player-1';
+  const PLAYER_2 = 'player-2'
+  const playersId = [PLAYER_1, PLAYER_2];
   let currentHighlightedId = playersId[0];
-  let currentTurn = 'Computer';
+  let currentTurn = PLAYER_1;
 
   // Stop interval function
   const stopInterval = () => {
@@ -48,15 +48,15 @@ const Mancala = () => {
     stopInterval();
     const currentHighlightedPitNumber = parseInt($currentHighlightedPit.textContent);
     const currentHighlightedPitId = $currentHighlightedPit.id;
-    if (currentHighlightedPitId === 'your-score' || currentHighlightedPitId === 'computer-score') {
-      currentHighlightedId = currentHighlightedPitId === 'your-score' ? YOUR : COMPUTER;
+    if (currentHighlightedPitId === 'player-1-score' || currentHighlightedPitId === 'player-2-score') {
+      currentHighlightedId = currentHighlightedPitId === 'player-1-score' ? PLAYER_1 : PLAYER_2;
       currentPit = 0;
       document.addEventListener('keyup', handleKeyboard, false);
       glowTile();
     } else if (currentHighlightedPitNumber > 1) {
       moveGlowTileAndReducePitNumber();
     } else {
-      currentHighlightedId = currentHighlightedId === COMPUTER ? YOUR : COMPUTER;
+      currentHighlightedId = currentHighlightedId === PLAYER_1 ? PLAYER_2 : PLAYER_1;
       currentPit = 0;
       document.addEventListener('keyup', handleKeyboard, false);
       chooseTurn(true);
@@ -79,28 +79,28 @@ const Mancala = () => {
         return;
       }
       $count.textContent = currentSelectedPitNumber - 1;
-      if (currentHighlightedId === COMPUTER && currentPit === 0) {
-        if (!isHighlightScore && currentTurn === 'Computer') {
-          glowTile(true, $computerScore);
+      if (currentHighlightedId === PLAYER_1 && currentPit === 0) {
+        if (!isHighlightScore && currentTurn === PLAYER_1) {
+          glowTile(true, $player1Score);
           isHighlightScore = true;
         } else {
           isHighlightScore = false;
-          currentHighlightedId = YOUR;
+          currentHighlightedId = PLAYER_2;
           glowTile(true); 
         }
-      } else if (currentHighlightedId === COMPUTER) {
+      } else if (currentHighlightedId === PLAYER_1) {
         currentPit -= 1
         glowTile(true); 
-      } else if (currentHighlightedId === YOUR && currentPit === 5) {
-        if (!isHighlightScore && currentTurn === 'Your') {
-          glowTile(true, $yourScore);
+      } else if (currentHighlightedId === PLAYER_2 && currentPit === 5) {
+        if (!isHighlightScore && currentTurn === PLAYER_2) {
+          glowTile(true, $player2Score);
           isHighlightScore = true;
         } else {
           isHighlightScore = false;
-          currentHighlightedId = COMPUTER;
+          currentHighlightedId = PLAYER_1;
           glowTile(true); 
         }
-      } else if (currentHighlightedId === YOUR) {
+      } else if (currentHighlightedId === PLAYER_2) {
         currentPit += 1;
         glowTile(true); 
       }
@@ -140,14 +140,18 @@ const Mancala = () => {
     }
   }
 
-  // Choose turn on random selection
+  /**
+   * Choose turn on random selection.
+   * If the passed boolean value is false (or not passed), the random selection will be done.
+   * Else whichever is currenty highlighted will be given the turn.
+   */
   const chooseTurn = (isChangeTurn) => {
     if (!isChangeTurn) {
       const rand = Math.random()
       currentHighlightedId = rand > 0.5 ? playersId[0] : playersId[1];  
     }
-    currentTurn = currentHighlightedId.charAt(0).toUpperCase() + currentHighlightedId.slice(1);
-    $turn.textContent = currentTurn;
+    $turn.textContent = currentHighlightedId === PLAYER_1 ? 'Player 1' : 'Player 2';
+    currentTurn = currentHighlightedId;
   }
 
   /**
@@ -165,12 +169,12 @@ const Mancala = () => {
     currentPit = 0;
     chooseTurn();
     glowTile();
-    $yourScore.textContent = '0';
-    $computerScore.textContent = '0';
+    $player1Score.textContent = '0';
+    $player2Score.textContent = '0';
     $count.textContent = '0';
     // DOM children needs to be iterative.
-    Array.from($yourPits.children).forEach($ele => $ele.textContent = '6');
-    Array.from($computerPits.children).forEach($ele => $ele.textContent = '6');
+    Array.from($player1Pits.children).forEach($ele => $ele.textContent = '6');
+    Array.from($player2Pits.children).forEach($ele => $ele.textContent = '6');
   }
 
   const initializeGame = () => {
