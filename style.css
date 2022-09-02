@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  font-family: sans-serif;
+  letter-spacing: 0.5px;
 }
 
 body {
@@ -17,6 +19,22 @@ header {
 main {
   width: 50%;
   margin: auto;
+}
+
+.instruction {
+  margin-bottom: 2rem;
+}
+
+.instruction__heading, .instruction__list {
+  font-family: monospace;
+}
+
+.instruction__list {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.area {
   padding: 2rem 1rem;
   border: 1px solid #149414;
 }

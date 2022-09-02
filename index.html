@@ -8,47 +8,69 @@
   </head>
   <body>
     <header>
-      <h2>Mancala</h2>
+      <h1>Mancala</h1>
     </header>
     <main>
-      <div class="meta">
-        <section class="meta__turn">
-          <h5>Turn:</h5>
-          <div id="turn"></div>
-        </section>
-        <section class="meta__turn">
-          <h5>Count:</h5>
-          <div id="count"></div>
-        </section>
-        <button>Restart</button>
-      </div>
-      <section class="game">
-        <h3>Player 1</h3>
-        <div class="game__board">
-          <div class="game__score" id="player-1-score"></div>
-          <div>
-            <div class="game__pits" id="player-1-pits">
-              <div id="player-1-pit-0"></div>
-              <div id="player-1-pit-1"></div>
-              <div id="player-1-pit-2"></div>
-              <div id="player-1-pit-3"></div>
-              <div id="player-1-pit-4"></div>
-              <div id="player-1-pit-5"></div>
-            </div>
-            <div class="game__pits" id="player-2-pits">
-              <div id="player-2-pit-0"></div>
-              <div id="player-2-pit-1"></div>
-              <div id="player-2-pit-2"></div>
-              <div id="player-2-pit-3"></div>
-              <div id="player-2-pit-4"></div>
-              <div id="player-2-pit-5"></div>
-            </div>
-          </div>
-          <div class="game__score" id="player-2-score"></div>
-        </div>
-        <h3>Player 2</h3>
+      <section class="instruction">
+        <h2 class="instruction__heading">Instructions:</h2>
+        <ul>
+          <li class="instruction__list">
+            Once the player is chosen, they can select any pit from their side to play.
+          </li>
+          <li class="instruction__list">
+            After the pit selection, all the numbers from that pit will be used to fill 
+            the other pits including player's own score pit while moving counter-clockwise.
+          </li>
+          <li class="instruction__list">
+            The chosen player will keep playing in this fashion until their last pit has digit "1".
+            If it happens then, other player will get the chance to choose a pit and play.
+          </li>
+          <li class="instruction__list">
+            Once either of the players' entire pits get empty, then whoever has the most number
+            in their score pit will be the winner.
+          </li>
+        </ul>
       </section>
+      <div class="area">
+        <div class="meta">
+          <section class="meta__turn">
+            <h3>Turn:</h3>
+            <div id="turn"></div>
+          </section>
+          <section class="meta__turn">
+            <h3>Count:</h3>
+            <div id="count"></div>
+          </section>
+          <button>Restart</button>
+        </div>
+        <section class="game">
+          <h3>Player 1</h3>
+          <div class="game__board">
+            <div class="game__score" id="player-1-score"></div>
+            <div>
+              <div class="game__pits" id="player-1-pits">
+                <div id="player-1-pit-0"></div>
+                <div id="player-1-pit-1"></div>
+                <div id="player-1-pit-2"></div>
+                <div id="player-1-pit-3"></div>
+                <div id="player-1-pit-4"></div>
+                <div id="player-1-pit-5"></div>
+              </div>
+              <div class="game__pits" id="player-2-pits">
+                <div id="player-2-pit-0"></div>
+                <div id="player-2-pit-1"></div>
+                <div id="player-2-pit-2"></div>
+                <div id="player-2-pit-3"></div>
+                <div id="player-2-pit-4"></div>
+                <div id="player-2-pit-5"></div>
+              </div>
+            </div>
+            <div class="game__score" id="player-2-score"></div>
+          </div>
+          <h3>Player 2</h3>
+        </section>
+      </div>
     </main>
-    <script type="text/javascript" src="main.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>

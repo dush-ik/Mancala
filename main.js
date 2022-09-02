@@ -42,7 +42,7 @@ const Mancala = () => {
    * Stop the tile move and check for current number.
    * If the current pit is any of the score pit, then the same player will get to choose again.
    * Else if the current pit number is greater than 1 then call moveGlowTile function again.
-   * Else other player will get the chance to choose and play again.
+   * Else other player will get the chance to choose and play.
    */
   const stopTileMove = () => {
     stopInterval();
@@ -82,7 +82,9 @@ const Mancala = () => {
   }
 
   /**
-   * 
+   * Once pit is selected, check its digit and store it in the count.
+   * Start the the interval function and move anti clock wise while reducing from the count and 
+   * increasing the count of the other highlighted pits.
    */
   const moveGlowTileAndReducePitNumber = () => {
     const $reducingPit = document.getElementById(`${currentHighlightedId}-pit-${currentPit}`);
