@@ -64,6 +64,23 @@ const Mancala = () => {
     }
   }
 
+  const checkForWin = () => {
+    const isPlayer1Empty = Array.from($player1Pits.children).every($ele => praseInt($ele.textContent) === 0);
+    const isPlayer2Empty = Array.from($player2Pits.children).every($ele => praseInt($ele.textContent) === 0);
+    if (isPlayer1Empty || isPlayer2Empty) {
+      stopInterval();
+      const player1Score = parseInt($player1Score.textContent);
+      const player2Score = parseInt($player2Score.textContent);
+      if(player1Score > player2Score) {
+        alert('Player 1 won');
+      } else if (player2Score < player1Score) {
+        alert('Player 2 won');
+      } else {
+        alert('It`s a tie')
+      }
+    }
+  }
+
   /**
    * 
    */
@@ -105,6 +122,7 @@ const Mancala = () => {
         glowTile(true); 
       }
       // check for end condition
+      checkForWin();
     }, 1000);
   }
 
