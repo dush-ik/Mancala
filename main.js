@@ -2,9 +2,9 @@
 const Mancala = () => {
   // DOM elements
   const $player1Score = document.getElementById('player-1-score');
-  const $player1Pits = document.getElementById('player-1-pits');
+  const $player1Pits = Array.from(document.getElementById('player-1-pits').children);
   const $player2Score = document.getElementById('player-2-score');
-  const $player2Pits = document.getElementById('player-2-pits');
+  const $player2Pits = Array.from(document.getElementById('player-2-pits').children);
   const $restartButton = document.querySelector('button');
   const $turn = document.getElementById('turn');
   const $count = document.getElementById('count');
@@ -56,7 +56,7 @@ const Mancala = () => {
     } else if (currentHighlightedPitNumber > 1) {
       moveGlowTileAndReducePitNumber();
     } else {
-      currentHighlightedId = currentHighlightedId === PLAYER_1 ? PLAYER_2 : PLAYER_1;
+      currentTurn = currentTurn === PLAYER_1 ? PLAYER_2 : PLAYER_1;
       currentPit = 0;
       document.addEventListener('keyup', handleKeyboard, false);
       chooseTurn(true);
@@ -65,8 +65,8 @@ const Mancala = () => {
   }
 
   const checkForWin = () => {
-    const isPlayer1Empty = Array.from($player1Pits.children).every($ele => praseInt($ele.textContent) === 0);
-    const isPlayer2Empty = Array.from($player2Pits.children).every($ele => praseInt($ele.textContent) === 0);
+    const isPlayer1Empty = $player1Pits.every($ele => parseInt($ele.textContent) === 0);
+    const isPlayer2Empty = $player2Pits.every($ele => parseInt($ele.textContent) === 0);
     if (isPlayer1Empty || isPlayer2Empty) {
       stopInterval();
       const player1Score = parseInt($player1Score.textContent);
@@ -91,6 +91,7 @@ const Mancala = () => {
     $count.textContent = $reducingPit.textContent;
     $reducingPit.textContent = 0;
     let isHighlightScore = false;
+
     interval = setInterval(() => {
       const currentSelectedPitNumber = parseInt($count.textContent);
       if(currentSelectedPitNumber === 0) {
@@ -98,6 +99,8 @@ const Mancala = () => {
         return;
       }
       $count.textContent = currentSelectedPitNumber - 1;
+
+      // if current highlighted pit is player-1`s and pit`s index is 0
       if (currentHighlightedId === PLAYER_1 && currentPit === 0) {
         if (!isHighlightScore && currentTurn === PLAYER_1) {
           glowTile(true, $player1Score);
@@ -109,7 +112,7 @@ const Mancala = () => {
         }
       } else if (currentHighlightedId === PLAYER_1) {
         currentPit -= 1
-        glowTile(true); 
+        glowTile(true);
       } else if (currentHighlightedId === PLAYER_2 && currentPit === 5) {
         if (!isHighlightScore && currentTurn === PLAYER_2) {
           glowTile(true, $player2Score);
@@ -123,6 +126,7 @@ const Mancala = () => {
         currentPit += 1;
         glowTile(true); 
       }
+
       // check for end condition
       checkForWin();
     }, 1000);
@@ -168,10 +172,10 @@ const Mancala = () => {
   const chooseTurn = (isChangeTurn) => {
     if (!isChangeTurn) {
       const rand = Math.random()
-      currentHighlightedId = rand > 0.5 ? playersId[0] : playersId[1];  
+      currentTurn = rand > 0.5 ? playersId[0] : playersId[1];  
     }
-    $turn.textContent = currentHighlightedId === PLAYER_1 ? 'Player 1' : 'Player 2';
-    currentTurn = currentHighlightedId;
+    currentHighlightedId = currentTurn;
+    $turn.textContent = currentTurn === PLAYER_1 ? 'Player 1' : 'Player 2';
   }
 
   /**
@@ -193,8 +197,8 @@ const Mancala = () => {
     $player2Score.textContent = '0';
     $count.textContent = '0';
     // DOM children needs to be iterative.
-    Array.from($player1Pits.children).forEach($ele => $ele.textContent = '6');
-    Array.from($player2Pits.children).forEach($ele => $ele.textContent = '6');
+    $player1Pits.forEach($ele => $ele.textContent = '6');
+    $player2Pits.forEach($ele => $ele.textContent = '6');
   }
 
   const initializeGame = () => {
