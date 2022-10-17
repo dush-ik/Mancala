@@ -73,7 +73,7 @@ const Mancala = () => {
       const player2Score = parseInt($player2Score.textContent);
       if(player1Score > player2Score) {
         alert('Player 1 won');
-      } else if (player2Score < player1Score) {
+      } else if (player1Score < player2Score) {
         alert('Player 2 won');
       } else {
         alert('It`s a tie')
