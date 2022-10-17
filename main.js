@@ -78,6 +78,8 @@ const Mancala = () => {
       } else {
         alert('It`s a tie')
       }
+      document.removeEventListener('keyup', handleKeyboard);
+      initializeGame();
     }
   }
 
