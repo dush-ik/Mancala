@@ -21,15 +21,15 @@ main {
   margin: auto;
 }
 
-.instruction {
+.rules {
   margin-bottom: 2rem;
 }
 
-.instruction__heading, .instruction__list {
+.rules__heading, .rules__list {
   font-family: monospace;
 }
 
-.instruction__list {
+.rules__list {
   font-size: 0.9rem;
   line-height: 1.5;
 }
